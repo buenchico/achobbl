@@ -1,6 +1,46 @@
 [
   {
     "gid": "2020467047",
-    "url": "amazons"
+    "url": "amazon"
+  },
+  {
+    "gid": "1492516110",
+    "url": "orc"
+  },
+  {
+    "gid": "243311989",
+    "url": "chaos_dwarf"
+  },
+  {
+    "gid": "1591053627",
+    "url": "necromantic_horror"
+  },
+  {
+    "gid": "1780528598",
+    "url": "goblin"
+  },
+  {
+    "gid": "320084379",
+    "url": "gnome"
+  },
+  {
+    "gid": "1037279945",
+    "url": "tomb_kings"
+  },
+  {
+    "gid": "237709727",
+    "url": "lizardmen"
+  },
+  {
+    "gid": "918156834",
+    "url": "snotlings"
+  },
+  {
+    "gid": "1453731043",
+    "url": "wood_elves"
+  },
+  {
+    "gid": "209248208",
+    "url": "nurgle"
   }
 ]

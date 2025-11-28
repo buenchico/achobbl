@@ -37,7 +37,7 @@
       <!--#include file="header.html" -->
 
       <div id="content" class="container content bg-light py-3">
-        <%- include(`partials/${partial}`) %>
+        <%- include('partials/' + partial, { data: data }) %>
       </div>
 
       <% if (process.env.ENVIRONMENT === 'development') { %>

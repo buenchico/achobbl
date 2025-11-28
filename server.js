@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 
 const app = express();
@@ -23,8 +24,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/:partial', (req, res) => {
-    const { partial } = req.params;
-    res.render('application', { partial });
+  const { partial } = req.params;
+
+  let data = null;
+  if (partial === 'fixtures') {
+    data = JSON.parse(fs.readFileSync('./public/fixtures.json', 'utf8'));
+  }
+
+  res.render('application', { partial, data });
 });
 
 // Dynamic route
