@@ -30,7 +30,7 @@
   var data = <%- JSON.stringify(data) %>;
 
   // Published CSV link (replace with your own gid if needed)
-  var csvUrl = "http://docs.google.com/spreadsheets/d/e/2PACX-1vQGI8IPIEedTf51WRl4ZzcoE1BZG1pxM4GmLJzW6UfR9L5UuyQL8LzUsxJJFmu0Vey3abhNPkA6N4kV/pub?gid=" + data["gid"] + "&single=true&output=tsv";
+  var csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQGI8IPIEedTf51WRl4ZzcoE1BZG1pxM4GmLJzW6UfR9L5UuyQL8LzUsxJJFmu0Vey3abhNPkA6N4kV/pub?gid=" + data["gid"] + "&single=true&output=tsv";
 
   // Show spinner at start
   $("#loading").show();
@@ -40,7 +40,7 @@
     var rows = csvText.trim().split("\n");
 
     // Slice rows 2 through 34 (exclusive)
-    var limitedRows = rows.slice(1, 10)
+    var limitedRows = rows.slice(1, 11)
 
     limitedRows.forEach(function(r) {
       var row = r.split("\t");
@@ -57,7 +57,6 @@
                       "<td>" + row[11] + "</td>" +
                       "<td>" + row[6] + "</td>" +
                     "</tr>"
-
 
       // Append to classification
       $('#classification_body').append(rowHtml);
