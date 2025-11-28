@@ -59,9 +59,11 @@
         }
 
         // Only proceed if both rows exist
+        let oddClass = (i % 4 === 2) ? " bg-secondary-subtle" : "";
+
         if (row1 && row2 && row1[2] && row1[2].trim() !== "") {
           $("#team").append(
-            "<div class='row mb-1'>" +
+            "<div class='row mb-1"  + oddClass + "'>" +
               "<div class='col'>" +
                 "<span class='badge text-bg-secondary'>#" + row1[0] + "</span> " +
                 "<span data-bs-toggle='popover' data-bs-trigger='hover' data-bs-placement='top' data-bs-content='" + row1[2] + "'>" +
@@ -69,12 +71,12 @@
                 "</span>" +
               "</div>" +
               // Stats from row1
-              "<div class='col'>" +
-                "<span class='stat-pair'><span class='badge text-dark p-0'>MA</span> <span class='badge text-bg-secondary'>" + row1[3] + "</span></span> " +
-                "<span class='stat-pair'><span class='badge text-dark p-0'>ST</span> <span class='badge text-bg-secondary'>" + row1[4] + "</span></span> " +
-                "<span class='stat-pair'><span class='badge text-dark p-0'>AG</span> <span class='badge text-bg-secondary'>" + row1[5] + "</span></span> " +
-                "<span class='stat-pair'><span class='badge text-dark p-0'>PA</span> <span class='badge text-bg-secondary'>" + row1[6] + "</span></span> " +
-                "<span class='stat-pair'><span class='badge text-dark p-0'>AV</span> <span class='badge text-bg-secondary'>" + row1[7] + "</span></span> " +
+              "<div class='col d-flex flex-wrap flex-md-row flex-column'>" +
+                "<span class='stat-pair me-2'><span class='badge text-dark p-0'>MA</span> <span class='badge text-bg-secondary'>" + row1[3] + "</span></span>" +
+                "<span class='stat-pair me-2'><span class='badge text-dark p-0'>ST</span> <span class='badge text-bg-secondary'>" + row1[4] + "</span></span>" +
+                "<span class='stat-pair me-2'><span class='badge text-dark p-0'>AG</span> <span class='badge text-bg-secondary'>" + row1[5] + "</span></span>" +
+                "<span class='stat-pair me-2'><span class='badge text-dark p-0'>PA</span> <span class='badge text-bg-secondary'>" + row1[6] + "</span></span>" +
+                "<span class='stat-pair me-2'><span class='badge text-dark p-0'>AV</span> <span class='badge text-bg-secondary'>" + row1[7] + "</span></span>" +
               "</div>" +
               // Skills from row2
               "<div class='col'>" +
