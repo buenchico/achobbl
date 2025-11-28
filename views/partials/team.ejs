@@ -11,8 +11,11 @@
 
 <script>
   $(function() {
+    // Embed server-side variables into JS
+    var team = <%- JSON.stringify(data) %>;
+
     // Published CSV link (replace with your own gid if needed)
-    var csvUrl = "http://docs.google.com/spreadsheets/d/e/2PACX-1vQGI8IPIEedTf51WRl4ZzcoE1BZG1pxM4GmLJzW6UfR9L5UuyQL8LzUsxJJFmu0Vey3abhNPkA6N4kV/pub?gid=2020467047&single=true&output=tsv";
+    var csvUrl = "http://docs.google.com/spreadsheets/d/e/2PACX-1vQGI8IPIEedTf51WRl4ZzcoE1BZG1pxM4GmLJzW6UfR9L5UuyQL8LzUsxJJFmu0Vey3abhNPkA6N4kV/pub?gid=" + team["gid"] + "&single=true&output=tsv";
 
     // Show spinner at start
     $("#loading").show();
@@ -24,7 +27,13 @@
       var teamName = rows[34].split("\t")[3]
       var teamRace = rows[39].split("\t")[3]
       var coachName = rows[44].split("\t")[3]
+      var cash = rows[49].split("\t")[3]
       var teamValue = rows[54].split("\t")[25]
+      var reRolls = rows[34].split("\t")[19]
+      var fans = rows[38].split("\t")[19]
+      var assistants = rows[42].split("\t")[19]
+      var cheerleaders = rows[46].split("\t")[19]
+      var apothecary = rows[50].split("\t")[19]
 
       $("#team").append("<h2>" + teamName + "(" + coachName + ")" + "<span class='badge text-bg-warning float-end'>" + teamValue + "</span>" + "</h2>");
 
@@ -75,6 +84,39 @@
           );
         }
       }
+
+      $("#team").append(
+        "<div class='row'>" +
+          "<div class='col text-end'>" +
+            "ReRolls: " + reRolls +
+          "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+          "<div class='col text-end'>" +
+            "Fans: " + fans +
+          "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+          "<div class='col text-end'>" +
+            "Assistant Coaches: " + assistants +
+          "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+          "<div class='col text-end'>" +
+            "Cheerleaders: " + cheerleaders +
+          "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+          "<div class='col text-end'>" +
+            "Apothecary: " + apothecary +
+          "</div>" +
+        "</div>" +
+        "<div class='row'>" +
+          "<div class='col text-end'>" +
+            "Cash: " + cash +
+          "</div>" +
+        "</div>"
+      );
 
       var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
       var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {

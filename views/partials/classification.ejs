@@ -1,0 +1,69 @@
+<!-- Spinner -->
+<div id="loading" class="text-center my-3">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div id="classification" class="container row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Equipo</th>
+        <th scope="col">Entrenador</th>
+        <th scope="col">PTS</th>
+        <th scope="col">PJ</th>
+        <th scope="col">G</th>
+        <th scope="col">E</th>
+        <th scope="col">P</th>
+        <th scope="col">TD+</th>
+        <th scope="col">TD-</th>
+        <th scope="col">DIF.</th>
+      </tr>
+    </thead>
+    <tbody id="classification_body">
+    </tbody>
+  </table>
+</div>
+
+<script>
+  var data = <%- JSON.stringify(data) %>;
+
+  // Published CSV link (replace with your own gid if needed)
+  var csvUrl = "http://docs.google.com/spreadsheets/d/e/2PACX-1vQGI8IPIEedTf51WRl4ZzcoE1BZG1pxM4GmLJzW6UfR9L5UuyQL8LzUsxJJFmu0Vey3abhNPkA6N4kV/pub?gid=" + data["gid"] + "&single=true&output=tsv";
+
+  // Show spinner at start
+  $("#loading").show();
+
+  $.get(csvUrl, function(csvText) {
+    // Split into rows
+    var rows = csvText.trim().split("\n");
+
+    // Slice rows 2 through 34 (exclusive)
+    var limitedRows = rows.slice(1, 10)
+
+    limitedRows.forEach(function(r) {
+      var row = r.split("\t");
+      // Start the row HTML
+      let rowHtml = "<tr>" +
+                      "<td>" + row[1] + "</td>" +
+                      "<td>" + row[3] + "</td>" +
+                      "<td>" + row[5] + "</td>" +
+                      "<td>" + row[4] + "</td>" +
+                      "<td>" + row[7] + "</td>" +
+                      "<td>" + row[8] + "</td>" +
+                      "<td>" + row[9] + "</td>" +
+                      "<td>" + row[10] + "</td>" +
+                      "<td>" + row[11] + "</td>" +
+                      "<td>" + row[6] + "</td>" +
+                    "</tr>"
+
+
+      // Append to classification
+      $('#classification_body').append(rowHtml);
+
+      // Hide spinner once done
+      $("#loading").hide();
+    });
+  });
+</script>

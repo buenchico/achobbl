@@ -1,46 +1,57 @@
 [
   {
     "gid": "2020467047",
-    "url": "amazon"
+    "url": "amazon",
+    "name": "Las Mozas"
   },
   {
     "gid": "1492516110",
-    "url": "orc"
+    "url": "orc",
+    "name": "Los Orcos de Romano"
   },
   {
     "gid": "243311989",
-    "url": "chaos_dwarf"
+    "url": "chaos_dwarf",
+    "name": "Dioses Antiguos"
   },
   {
     "gid": "1591053627",
-    "url": "necromantic_horror"
+    "url": "necromantic_horror",
+    "name": "Hammer Films"
   },
   {
     "gid": "1780528598",
-    "url": "goblin"
+    "url": "goblin",
+    "name": "Tramposos del Tío Sam"
   },
   {
     "gid": "320084379",
-    "url": "gnome"
+    "url": "gnome",
+    "name": "Gnome digas más"
   },
   {
     "gid": "1037279945",
-    "url": "tomb_kings"
+    "url": "tomb_kings",
+    "name": "Los muertos de Rabs"
   },
   {
     "gid": "237709727",
-    "url": "lizardmen"
+    "url": "lizardmen",
+    "name": "Lagartas Juanchas"
   },
   {
     "gid": "918156834",
-    "url": "snotlings"
+    "url": "snotlings",
+    "name": "Waaagons"
   },
   {
     "gid": "1453731043",
-    "url": "wood_elves"
+    "url": "wood_elves",
+    "name": "Troncos"
   },
   {
     "gid": "209248208",
-    "url": "nurgle"
+    "url": "nurgle",
+    "name": "Chef's Kiss"
   }
 ]

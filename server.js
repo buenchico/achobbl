@@ -6,6 +6,9 @@ const path = require('path');
 
 const app = express();
 
+// Dynamic route
+const teams = require('./public/teams.json'); // Load teams JSON once
+
 // Serve static files (CSS, images, etc.)
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -21,7 +24,7 @@ app.get("/script.js", (req, res) => {
 // Define routes that render different "main" content
 app.get('/', (req, res) => {
     data = JSON.parse(fs.readFileSync('./public/fixtures.json', 'utf8'));
-    res.render('application', { partial: 'fixtures', data: data });
+    res.render('application', { partial: 'fixtures', data, teams });
 });
 
 app.get('/:partial', (req, res) => {
@@ -32,11 +35,12 @@ app.get('/:partial', (req, res) => {
     data = JSON.parse(fs.readFileSync('./public/fixtures.json', 'utf8'));
   }
 
-  res.render('application', { partial, data });
-});
+  if (partial === 'classification') {
+    data = JSON.parse(fs.readFileSync('./public/classification.json', 'utf8'));
+  }
 
-// Dynamic route
-const teams = require('./public/teams.json'); // Load teams JSON once
+  res.render('application', { partial, data: data, teams });
+});
 
 app.get('/teams/:url', (req, res) => {
   const teamUrl = req.params.url;
@@ -47,7 +51,7 @@ app.get('/teams/:url', (req, res) => {
   }
 
   // Render teams.ejs partial with the correct gid
-  res.render('application', { partial: 'team', team });
+  res.render('application', { partial: 'team', data: team, teams });
 });
 
 const PORT = process.env.PORT;
