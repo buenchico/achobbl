@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Achobbl</title>
+
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Graduate&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Bootstrap icons CSS -->
+    <link rel="stylesheet" href="/css/bootstrap-icons.min.css">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" href="/css/common.css">
+
+    <!-- jQuery -->
+    <script
+			  src="https://code.jquery.com/jquery-3.7.1.min.js"
+			  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+			  crossorigin="anonymous"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+  <body class="bg-dark">
+      <%- include('layouts/header') %>
+      <!--#include file="header.html" -->
+
+      <div id="content" class="container content bg-light py-3">
+        <%- include(`partials/${partial}`) %>
+      </div>
+
+      <% if (process.env.ENVIRONMENT === 'development') { %>
+        <%- include('layouts/debug') %>
+      <% } %>
+  </body>
+</html>

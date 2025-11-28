@@ -1,0 +1,94 @@
+{
+  "rounds": [
+    {
+      "round": 1,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    },
+    {
+      "round": 2,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    },
+    {
+      "round": 3,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    },
+    {
+      "round": 4,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    },
+    {
+      "round": 5,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    },
+    {
+      "round": 6,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    },
+    {
+      "round": 7,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    },
+    {
+      "round": 8,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    },
+    {
+      "round": 9,
+      "matches": [
+        { "teams": ["Dioses Antiguos", "Chef's Kiss"] },
+        { "teams": ["Hammer Films", "Gnome digas más"] },
+        { "teams": ["Tramposos del Tío Sam", "Los muertos de Rabs"] },
+        { "teams": ["Waaagons", "Lagartas Guanchas"] },
+        { "teams": ["Troncos", "Los orcos del Romano"] }
+      ]
+    }
+  ]
+}

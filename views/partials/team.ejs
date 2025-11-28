@@ -1,0 +1,88 @@
+<!-- Spinner -->
+<div id="loading" class="text-center my-3">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div id="team" class="container row">
+</div>
+
+
+<script>
+  $(function() {
+    // Published CSV link (replace with your own gid if needed)
+    var csvUrl = "http://docs.google.com/spreadsheets/d/e/2PACX-1vQGI8IPIEedTf51WRl4ZzcoE1BZG1pxM4GmLJzW6UfR9L5UuyQL8LzUsxJJFmu0Vey3abhNPkA6N4kV/pub?gid=2020467047&single=true&output=tsv";
+
+    // Show spinner at start
+    $("#loading").show();
+
+    $.get(csvUrl, function(csvText) {
+      // Split into rows
+      var rows = csvText.trim().split("\n");
+
+      var teamName = rows[34].split("\t")[3]
+      var teamRace = rows[39].split("\t")[3]
+      var coachName = rows[44].split("\t")[3]
+      var teamValue = rows[54].split("\t")[25]
+
+      $("#team").append("<h2>" + teamName + "(" + coachName + ")" + "<span class='badge text-bg-warning float-end'>" + teamValue + "</span>" + "</h2>");
+
+      // Slice rows 2 through 34 (exclusive)
+      var limitedRows = rows.slice(2, 34);
+
+      // Step through in increments of 2
+      for (var i = 0; i < limitedRows.length; i += 2) {
+        var row1 = limitedRows[i].split("\t");
+        var row2 = limitedRows[i + 1] ? limitedRows[i + 1].split("\t") : null;
+
+        var skills = row2.slice(8, 14)
+          .filter(function(val) {
+            return val && val.trim() !== ""; // skip empty values
+          })
+          .map(function(val) {
+            return "<span class='text-warning'>" + val + "</span>";
+          })
+          .join(" "); // join with spaces or commas depending on your preference
+
+        if (skills) {
+          skills = ", " + skills;
+        }
+
+        // Only proceed if both rows exist
+        if (row1 && row2 && row1[2] && row1[2].trim() !== "") {
+          $("#team").append(
+            "<div class='row mb-1'>" +
+              "<div class='col'>" +
+                "<span class='badge text-bg-secondary'>#" + row1[0] + "</span> " +
+                "<span data-bs-toggle='popover' data-bs-trigger='hover' data-bs-placement='top' data-bs-content='" + row1[2] + "'>" +
+                  row1[1] +
+                "</span>" +
+              "</div>" +
+              // Stats from row1
+              "<div class='col'>" +
+                "<span class='stat-pair'><span class='badge text-dark p-0'>MA</span> <span class='badge text-bg-secondary'>" + row1[3] + "</span></span> " +
+                "<span class='stat-pair'><span class='badge text-dark p-0'>ST</span> <span class='badge text-bg-secondary'>" + row1[4] + "</span></span> " +
+                "<span class='stat-pair'><span class='badge text-dark p-0'>AG</span> <span class='badge text-bg-secondary'>" + row1[5] + "</span></span> " +
+                "<span class='stat-pair'><span class='badge text-dark p-0'>PA</span> <span class='badge text-bg-secondary'>" + row1[6] + "</span></span> " +
+                "<span class='stat-pair'><span class='badge text-dark p-0'>AV</span> <span class='badge text-bg-secondary'>" + row1[7] + "</span></span> " +
+              "</div>" +
+              // Skills from row2
+              "<div class='col'>" +
+                row1[8] + skills +
+              "</div>" +
+            "</div>"
+          );
+        }
+      }
+
+      var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+      });
+
+      // Hide spinner once done
+      $("#loading").hide();
+    });
+  });
+</script>

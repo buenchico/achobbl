@@ -1,0 +1,37 @@
+<div id="fixtures" class="container row">
+</div>
+
+<script>
+  $(document).ready(function() {
+    $.getJSON('/fixtures.json', function(data) {
+      // Loop through each round
+      $.each(data.rounds, function(index, round) {
+        // Create round container
+        $('#fixtures').append(`
+            <div class="col-12 col-md-6 mb-3" id="round_` + round.round + `">
+            </div>
+          `);
+
+        // Add round heading
+        $('#round_' + round.round).append('<h2>Jornada ' + round.round + '</h2>');
+
+        // Loop through matches in this round
+        $.each(round.matches, function(i, match) {
+          $('#round_' + round.round).append(
+            '<div class="row">' +
+              '<div class="col-5 text-end">' +
+                  match.teams[0] +
+              '</div>' +
+              '<div class="col-1">' +
+                  '🆚' +
+              '</div>' +
+              '<div class="col-5 text-start">' +
+                  match.teams[1] +
+              '</div>' +
+            '</div>'
+          );
+        });
+      });
+    });
+  });
+</script>

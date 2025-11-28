@@ -1,0 +1,23 @@
+.header {
+  font-size: 1.5rem
+}
+
+.footer {
+  font-size: 0.7rem
+}
+
+.graduate-regular {
+  font-family: "Graduate", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  --bs-body-font-family: "Graduate", serif;
+}
+
+.stat-pair {
+  display: inline-block;   /* keeps label+value together */
+  white-space: nowrap;     /* prevents breaking between them */
+  margin-right: .5rem;     /* optional spacing between pairs */
+}

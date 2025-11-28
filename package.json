@@ -1,0 +1,26 @@
+{
+  "name": "apeiron",
+  "version": "1.0.0",
+  "description": "Apeiron",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js -e js,json,ejs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buenchico/apeiron.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/buenchico/apeiron/issues"
+  },
+  "homepage": "https://github.com/buenchico/apeiron#readme",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}
