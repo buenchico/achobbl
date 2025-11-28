@@ -20,7 +20,8 @@ app.get("/script.js", (req, res) => {
 
 // Define routes that render different "main" content
 app.get('/', (req, res) => {
-    res.render('application', { partial: 'fixtures' });
+    data = JSON.parse(fs.readFileSync('./public/fixtures.json', 'utf8'));
+    res.render('application', { partial: 'fixtures', data: data });
 });
 
 app.get('/:partial', (req, res) => {
