@@ -64,12 +64,12 @@
                                 <span>${skill}</span>
                                 <div class="d-none skillBox card">
                                   <div class="card-header">
-                                    <strong>${skill}</strong> — ${skillsData[skill].type} ${skillsData[skill].category}
+                                    <strong>${skill}</strong> — ${skillsData[skill]?.type || ''} ${skillsData[skill]?.category || ''}
                                     <!-- Close button -->
                                     <button type="button" class="btn-close float-end" aria-label="Close"></button>
                                   </div>
                                   <div class="card-body">
-                                    ${skillsData[skill].description}
+                                    ${skillsData[skill]?.category || ''}
                                   </div>
                                 </div>
                               </div>`
@@ -79,12 +79,12 @@
                                   <span class="text-warning">${skill}</span>
                                   <div class="d-none skillBox card">
                                     <div class="card-header">
-                                      <strong>${skill}</strong> — ${skillsData[skill].type} ${skillsData[skill].category}
+                                      <strong>${skill}</strong> — ${skillsData[skill]?.type || ''} ${skillsData[skill]?.category || ''}
                                       <!-- Close button -->
                                       <button type="button" class="btn-close float-end" aria-label="Close"></button>
                                     </div>
                                     <div class="card-body">
-                                      ${skillsData[skill].description}
+                                      ${skillsData[skill]?.category || ''}
                                     </div>
                                   </div>
                                 </div>`
