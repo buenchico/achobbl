@@ -13,6 +13,7 @@
   $(function() {
     // Embed server-side variables into JS
     var team = <%- JSON.stringify(data) %>;
+    var skillsData = <%- JSON.stringify(skillsData) %>;
 
     // Published CSV link (replace with your own gid if needed)
     var csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vQGI8IPIEedTf51WRl4ZzcoE1BZG1pxM4GmLJzW6UfR9L5UuyQL8LzUsxJJFmu0Vey3abhNPkA6N4kV/pub?gid=" + team["gid"] + "&single=true&output=tsv";
@@ -34,8 +35,10 @@
       var assistants = rows[42].split("\t")[19]
       var cheerleaders = rows[46].split("\t")[19]
       var apothecary = rows[50].split("\t")[19]
+      var league = rows[38].split("\t")[8]
+      var rules = rows[48].split("\t")[8]
 
-      $("#team").append("<h2>" + teamName + "(" + coachName + ")" + "<span class='badge text-bg-warning float-end'>" + teamValue + "</span>" + "</h2>");
+      $("#team").append("<h2>" + teamName + " (" + coachName + ")" + "<span class='badge text-bg-warning float-end'>" + teamValue + "</span>" + "</h2>");
 
       // Slice rows 2 through 34 (exclusive)
       var limitedRows = rows.slice(2, 34);
@@ -45,18 +48,47 @@
         var row1 = limitedRows[i].split("\t");
         var row2 = limitedRows[i + 1] ? limitedRows[i + 1].split("\t") : null;
 
-        var skills = row2.slice(8, 14)
+        var innateSkills = row1[8].split(",")
+          .map(s => s.trim())
           .filter(function(val) {
             return val && val.trim() !== ""; // skip empty values
           })
-          .map(function(val) {
-            return "<span class='text-warning'>" + val + "</span>";
-          })
-          .join(" "); // join with spaces or commas depending on your preference
 
-        if (skills) {
-          skills = ", " + skills;
-        }
+        var gainedSkills = row2.slice(8, 14)
+          .filter(function(val) {
+            return val && val.trim() !== ""; // skip empty values
+          })
+
+        var skills = innateSkills.map(skill => {
+                      return `<div class="d-inline-block position-relative skill">
+                                <span>${skill}</span>
+                                <div class="d-none skillBox card">
+                                  <div class="card-header">
+                                    <strong>${skill}</strong> — ${skillsData[skill].type} ${skillsData[skill].category}
+                                    <!-- Close button -->
+                                    <button type="button" class="btn-close float-end" aria-label="Close"></button>
+                                  </div>
+                                  <div class="card-body">
+                                    ${skillsData[skill].description}
+                                  </div>
+                                </div>
+                              </div>`
+                      })
+                      .concat(gainedSkills.map(skill => {
+                        return `<div class="d-inline-block position-relative skill">
+                                  <span class="text-warning">${skill}</span>
+                                  <div class="d-none skillBox card">
+                                    <div class="card-header">
+                                      <strong>${skill}</strong> — ${skillsData[skill].type} ${skillsData[skill].category}
+                                      <!-- Close button -->
+                                      <button type="button" class="btn-close float-end" aria-label="Close"></button>
+                                    </div>
+                                    <div class="card-body">
+                                      ${skillsData[skill].description}
+                                    </div>
+                                  </div>
+                                </div>`
+                      }))
 
         // Only proceed if both rows exist
         let oddClass = (i % 4 === 2) ? " bg-secondary-subtle" : "";
@@ -66,10 +98,11 @@
             "<div class='row mb-1"  + oddClass + "'>" +
               "<div class='col'>" +
                 "<span class='badge text-bg-secondary'>#" + row1[0] + "</span> " +
-                "<span data-bs-toggle='popover' data-bs-trigger='hover' data-bs-placement='top' data-bs-content='" + row1[2] + "'>" +
-                  row1[1] +
+                "<span>" + row1[1] + "</span> — " +
+                "<span class='secondary text-secondary'>" + row1[2] + "</span>" +
                 "</span>" +
               "</div>" +
+
               // Stats from row1
               "<div class='col d-flex flex-wrap flex-md-row flex-column'>" +
                 "<span class='stat-pair me-2'><span class='badge text-dark p-0'>MA</span> <span class='badge text-bg-secondary'>" + row1[3] + "</span></span>" +
@@ -80,7 +113,7 @@
               "</div>" +
               // Skills from row2
               "<div class='col'>" +
-                row1[8] + skills +
+                skills.join(", ") +
               "</div>" +
             "</div>"
           );
@@ -89,11 +122,17 @@
 
       $("#team").append(
         "<div class='row'>" +
+          "<div class='col text-start'>" +
+            "League: " + league +
+          "</div>" +
           "<div class='col text-end'>" +
             "ReRolls: " + reRolls +
           "</div>" +
         "</div>" +
         "<div class='row'>" +
+          "<div class='col text-start'>" +
+            "Special rules: " + rules +
+          "</div>" +
           "<div class='col text-end'>" +
             "Fans: " + fans +
           "</div>" +
@@ -120,13 +159,30 @@
         "</div>"
       );
 
-      var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl);
-      });
-
       // Hide spinner once done
       $("#loading").hide();
+    });
+  });
+
+  $(document).ready(function() {
+    // Toggle when clicking a skill
+    $(document).on('click', '.skill', function(e) {
+      e.stopPropagation(); // prevent bubbling to document
+      $('.skillBox').addClass('d-none')
+      $(this).find('.skillBox').toggleClass('d-none');
+    });
+
+    // Hide all when clicking anywhere else
+    $(document).on('click', function(e) {
+      // If the click target is not inside a .skill or .skillBox
+      if (!$(e.target).closest('.skill, .skillBox').length) {
+        $('.skillBox').addClass('d-none');
+      }
+    });
+
+    $(document).on('click', '.btn-close', function(e) {
+      e.stopPropagation(); // prevent bubbling to document
+      $('.skillBox').addClass('d-none')
     });
   });
 </script>

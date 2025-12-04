@@ -21,3 +21,31 @@
   white-space: nowrap;     /* prevents breaking between them */
   margin-right: .5rem;     /* optional spacing between pairs */
 }
+
+.secondary {
+  font-size: smaller;
+  font-family: sans-serif;
+}
+
+.skillBox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;          /* default width */
+  max-width: 95vw;      /* never overflow viewport horizontally */
+  font-size: smaller;
+  font-family: sans-serif;
+  z-index: 10000;
+  box-sizing: border-box;
+}
+
+/* If the viewport is narrower than 220px, override positioning */
+@media (max-width: 400px) {
+  .skillBox {
+    position: fixed;     /* relative to the window, not parent */
+    left: 0;             /* stick to left edge */
+    right: 0;            /* stretch across */
+    margin: 0 auto;      /* center horizontally */
+    top: 100px;
+  }
+}
